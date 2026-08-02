@@ -126,7 +126,7 @@ with tab1:
     ax2.set_ylabel("Delhi PM2.5 (µg/m³)", color=INK)
     ax2.grid(False)
     ax1.grid(alpha=0.25)
-    st.pyplot(fig, use_container_width=True)
+    st.pyplot(fig, width='stretch')
 
     r = view["fire_count"].corr(view["pm25"])
     st.info(
@@ -192,7 +192,7 @@ with tab3:
     ax.set_xlabel("fire detections that day")
     ax.set_ylabel("Delhi PM2.5 (µg/m³)")
     plt.colorbar(sc, ax=ax, label="wind speed")
-    st.pyplot(fig, use_container_width=True)
+    st.pyplot(fig, width='stretch')
 
     st.info(
         f"Wind speed correlates **{df['wind_speed'].corr(df['pm25']):.3f}** with PM2.5 — "
@@ -218,13 +218,13 @@ with tab4:
     st.markdown("**How much each block explains**")
     st.dataframe(
         ladder.style.format({"R²": "{:.3f}", "Gain": "+{:.3f}"}),
-        use_container_width=True, hide_index=True,
+        width='stretch', hide_index=True,
     )
 
     st.markdown("**Key coefficients**")
     st.dataframe(
         coefs.style.format({"Coefficient": "{:.4f}", "Std error": "{:.4f}", "p-value": "{:.2e}"}),
-        use_container_width=True,
+        width='stretch',
     )
 
     inter = coefs.loc["fire_count:alignment"] if "fire_count:alignment" in coefs.index else None
